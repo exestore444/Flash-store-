@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXE Store - Premium AI Shopping</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-container">
+        <div class="bg-gradient"></div>
+        <div class="bg-pattern"></div>
+        <div class="bg-noise"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo" onclick="navigateHome()">
+                    <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                    <div class="logo-text"><span class="exe">EXE</span><span class="store">Store</span></div>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="searchInput" 
+                               placeholder="Search products... (112233 = Admin)" 
+                               onkeypress="handleSearchKey(event)">
+                        <button class="search-btn" onclick="executeSearch()">
+                            <i class="fas fa-bolt"></i> AI Search
+                        </button>
+                    </div>
+                </div>
+
+                <nav class="nav-links">
+                    <a class="nav-link active" onclick="navigateHome()">Home</a>
+                    <a class="nav-link" onclick="showFlashDeals()">Deals</a>
+                    <a class="nav-link" onclick="showCategories()">Categories</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Hero -->
+        <section class="hero" id="heroSection">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-badge fade-in">
+                            <i class="fas fa-sparkles"></i>
+                            AI-Powered Premium Shopping
+                        </div>
+                        <h1 class="hero-title fade-in stagger-1">
+                            Discover <span class="highlight">Premium</span> Products
+                        </h1>
+                        <p class="hero-description fade-in stagger-2">
+                            Experience luxury shopping with EXE Store. Find exclusive deals, flash sales, and premium products powered by intelligent AI technology.
+                        </p>
+                        <div class="hero-actions fade-in stagger-3">
+                            <button class="btn btn-primary btn-lg" onclick="showFlashDeals()">
+                                <i class="fas fa-bolt"></i> Flash Deals
+                            </button>
+                            <button class="btn btn-secondary btn-lg" onclick="showCategories()">
+                                <i class="fas fa-th-large"></i> Browse All
+                            </button>
+                        </div>
+                        <div class="hero-stats fade-in stagger-4">
+                            <div class="stat">
+                                <div class="stat-value">50K+</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">200+</div>
+                                <div class="stat-label">Brands</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">30%</div>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-featured fade-in stagger-3">
+                        <div class="product-card" style="max-width: 380px; margin: 0 auto;">
+                            <div class="product-image-wrap">
+                                <div class="product-badges">
+                                    <span class="badge badge-flash"><i class="fas fa-bolt"></i> Flash</span>
+                                    <span class="badge badge-discount">-45%</span>
+                                </div>
+                                <button class="product-wishlist" onclick="toggleWishlist('prod_001', this)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Premium Watch" class="product-image">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Watches</div>
+                                <h3 class="product-title">Luxury Chronograph Watch - Gold Edition</h3>
+                                <div class="product-rating">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <span class="rating-text">4.8 (2.3k)</span>
+                                </div>
+                                <div class="product-price-row">
+                                    <span class="price-current">$299</span>
+                                    <span class="price-original">$549</span>
+                                    <span class="price-discount">Save $250</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-buy" onclick="buyProduct('prod_001')">
+                                        <i class="fas fa-shopping-bag"></i> Buy Now
+                                    </button>
+                                    <button class="btn-direct" onclick="buyDirect('prod_001')">Direct</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flash Deals -->
+        <section class="section section-flash" id="flashSection">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title fade-in"><span class="highlight">Flash</span> Deals</h2>
+                    <div class="countdown-wrap fade-in">
+                        <span class="countdown-label">Ends in:</span>
+                        <div class="countdown-timer">
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="hours">12</div>
+                                <div class="countdown-unit">HRS</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="minutes">45</div>
+                                <div class="countdown-unit">MIN</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-num" id="seconds">30</div>
+                                <div class="countdown-unit">SEC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-grid" id="flashDealsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="section" id="categoriesSection">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title fade-in">Shop by <span class="highlight">Category</span></h2>
+                </div>
+                <div class="category-grid fade-in" id="categoryGrid"></div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="section" id="featuredSection">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title fade-in">Featured <span class="highlight">Products</span></h2>
+                </div>
+                <div class="product-grid" id="featuredGrid"></div>
+            </div>
+        </section>
+
+        <!-- Search Results -->
+        <section class="search-section" id="searchResults" style="display: none;">
+            <div class="container">
+                <div class="search-header fade-in">
+                    <div class="search-title-row">
+                        <h2 class="section-title">Search Results</h2>
+                        <span class="ai-badge"><i class="fas fa-robot"></i> AI Powered</span>
+                    </div>
+                    <p class="search-count" id="searchCount">Loading...</p>
+                </div>
+                <div id="searchResultsContainer"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                        <div class="logo-text"><span class="exe">EXE</span><span class="store">Store</span></div>
+                    </div>
+                    <p>Your premium destination for AI-powered shopping. Discover luxury deals from top brands worldwide.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateHome()">Home</a></li>
+                        <li><a href="#" onclick="showFlashDeals()">Flash Deals</a></li>
+                        <li><a href="#" onclick="showCategories()">Categories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="searchCategory('Electronics')">Electronics</a></li>
+                        <li><a href="#" onclick="searchCategory('Fashion')">Fashion</a></li>
+                        <li><a href="#" onclick="searchCategory('Watches')">Watches</a></li>
+                        <li><a href="#" onclick="searchCategory('Beauty')">Beauty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 EXE Store. All rights reserved. Powered by AI Technology.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-modal">
+            <div class="admin-header">
+                <h2 class="admin-title"><i class="fas fa-cog"></i> Admin Dashboard</h2>
+                <button class="admin-close" onclick="closeAdmin()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="admin-body" id="adminBody"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastText">Success!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
